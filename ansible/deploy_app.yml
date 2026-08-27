@@ -1,0 +1,25 @@
+---
+- name: Deploy Student API
+  hosts: webservers
+  become: true
+
+  tasks:
+
+    - name: Pull latest Student API image
+      community.docker.docker_image:
+        name: puneetbt11/student-api:1.1
+        source: pull
+
+    - name: Stop existing Student API container
+      community.docker.docker_container:
+        name: student-api-container
+        state: absent
+
+    - name: Start Student API container
+      community.docker.docker_container:
+        name: student-api-container
+        image: puneetbt11/student-api:1.1
+        state: started
+        restart_policy: unless-stopped
+        published_ports:
+          - "5000:5000"

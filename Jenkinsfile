@@ -3,7 +3,7 @@ pipeline {
     agent any
 
     environment {
-        EC2_HOST = '3.110.92.158'
+        EC2_HOST = '13.203.224.148'
         EC2_USER = 'ubuntu'
 
         IMAGE_NAME = 'student-api:1.1'

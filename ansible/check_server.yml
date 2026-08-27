@@ -1,0 +1,14 @@
+---
+- name: Check EC2 server
+  hosts: webservers
+  become: true
+
+  tasks:
+
+    - name: Check Docker version
+      command: docker --version
+      register: docker_version
+
+    - name: Show Docker version
+      debug:
+        var: docker_version.stdout
